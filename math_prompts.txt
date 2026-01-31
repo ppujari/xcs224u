@@ -1,0 +1,17 @@
+Prompt: A mean-centered dataset in $\mathbb{R}^2$ has a covariance matrix $\Sigma$ given by:$$\Sigma = \begin{pmatrix} a & \sqrt{20} \\ \sqrt{20} & 7 \end{pmatrix}$$In a Principal Component Analysis (PCA) of this data, it is found that the first principal component explains exactly $80\%$ of the total variance. Given that $a < 10$, find the value of $a$.
+Step 1: Define Eigenvalue
+Let $\lambda_1$ and $\lambda_2$ be the eigen values of the matrix $\Sigma$. Based on the $80\%$ requirement:
+$$\frac{\lambda_1}{\lambda_1 + \lambda_2} = \frac{4}{5} \implies 5\lambda_1 = 4\lambda_1 + 4\lambda_2 \implies \lambda_1 = 4\lambda_2$$
+
+Step 2: Solve the Matrix:
+Sum of Eigenvalues: $$\lambda_1 + \lambda_2 = \text{sum}(\Sigma) = a + 7$$ Since $\lambda_1 = 4\lambda_2$, we substitute to find $\lambda_2$ in terms of $a$:$$5\lambda_2 = a + 7 \implies \lambda_2 = \frac{a+7}{5}$$
+Determinant (Product of Eigenvalues):$$\lambda_1\lambda_2 = \det(\Sigma) = (a)(7) - (\sqrt{20})^2 = 7a - 20$$
+
+Step:3 Find value of a
+Substitute the relationship $\lambda_1 = 4\lambda_2$ into the determinant equation:$$(4\lambda_2)(\lambda_2) = 7a - 20 \implies 4\lambda_2^2 = 7a - 20$$
+Now, substitute the expression for $\lambda_2$ derived in Step 2:$$4 \left( \frac{a+7}{5} \right)^2 = 7a - 20$$
+Expand the numerator and multiply both sides by $25$ ($5^2$) to clear the fraction:$$4(a^2 + 14a + 49) = 25(7a - 20)$$
+$$4a^2 + 56a + 196 = 175a - 500$$
+Rearrange all terms to one side to form a standard quadratic equation:$$4a^2 - 119a + 696 = 0$$
+Solving this quadratic equation, we have a = 8 and 21.75 
+Since a < 10 (as per question), we can safely choose 8 as the answer.
