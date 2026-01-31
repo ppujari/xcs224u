@@ -15,3 +15,30 @@ $$4a^2 + 56a + 196 = 175a - 500$$
 Rearrange all terms to one side to form a standard quadratic equation:$$4a^2 - 119a + 696 = 0$$
 Solving this quadratic equation, we have a = 8 and 21.75 
 Since a < 10 (as per question), we can safely choose 8 as the answer.
+
+Prompt: Let $S$ be the set of all $3 \times 3$ matrices $A$ such that every entry $a_{i,j} \in \{0, 1, 2\}$. Let $N(A)$ denote the null space of $A$. A matrix $A$ is chosen at random from $S$. 
+Let $P$ be the probability that the dimension of $N(A)$ is exactly 1. If $P = \frac{m}{n}$ for relatively prime positive integers $m$ and $n$, find the remainder when $m+n$ is divided by $1000$.
+
+Step 1: Total Number of Matrices
+The total number of $3 \times 3$ matrices with entries in $\{0, 1, 2\}$ is:$$|S| = 3^{3 \times 3} = 
+3^9 = 19,683$$
+
+Step 2: Null Space Dimension to Rank
+By the rank-nullity theorem, for any $3 \times 3$ matrix $A$:$$\text{rank}(A) + \dim(N(A)) = 3$$Therefore, the condition $\dim(N(A)) = 1$ is equivalent to $\text{rank}(A) = 2$. Our goal is to count the number of $3 \times 3$ matrices over $\mathbb{F}_3$ with rank exactly 2.
+
+Step: 3 Counting Matrices by Rank
+Rank 0 Matrices: A matrix has rank 0 if and only if it is the zero matrix. Therefore:$$n_0 = 1$$
+Rank 1 Matrices: A matrix has rank 1 if and only if all its rows lie in the same 1-dimensional subspace and at least one row is non-zero. Any rank 1 matrix over $\mathbb{F}_3$ can be written as $A = uv^T$ where $u, v \in \mathbb{F}_3^3$ are both non-zero column vectors.There are $3^3 - 1 = 26$ choices for $u$ and 26 choices for $v$. Since $uv^T = (cu)(c^{-1}v)^T$ for any non-zero scalar $c \in \{1, 2\}$, each matrix is counted twice.$$n_1 = \frac{(3^3 - 1)(3^3 - 1)}{3 - 1} = \frac{26 \times 26}{2} = 338$$
+
+Rank 3 Matrices: A $3 \times 3$ matrix has rank 3 if and only if it is invertible, i.e., its three rows are linearly independent vectors in $\mathbb{F}_3^3$. These form the general linear group $GL_3(\mathbb{F}_3)$. We count by choosing linearly independent rows:First row: Any non-zero vector in $\mathbb{F}_3^3$. There are $3^3 - 1 = 26$ choices.Second row: Any vector not in the span of the first row. The span of the first row contains 3 vectors, so there are $3^3 - 3 = 24$ choices.Third row: Any vector not in the span of the first two rows. The span of two linearly independent rows contains $3^2 = 9$ vectors, so there are $3^3 - 9 = 18$ choices.$$n_3 = (3^3 - 1)(3^3 - 3)(3^3 - 3^2) = 26 \cdot 24 \cdot 18 = 11,232$$
+
+Rank 2 Matrices: Using all possible matrices:$$n_2 = 3^9 - (n_0 + n_1 + n_3)$$ $$n_2 = 19,683 - (1 + 338 + 11,232) = 19,683 - 11,571 = 8,112$$
+Step 4: Probability
+So probability $P$ is:$$P = \frac{n_2}{|S|} = \frac{8,112}{19,683}$$ $$= \frac{3 \times 2,704}{3^9} = \frac{2,704}{3^8} = \frac{2,704}{6,561}$$
+
+$m = 2,704 $ n = 6,561
+
+$$m + n = 2,704 + 6,561 = 9,265$$
+$$9,265 \pmod{1000} = 265$$
+
+Answer: 265
